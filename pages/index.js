@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Banner from '../components/Banner'
+import Footer from '../components/Footer'
 import Header from '../components/Header'
 import LargeCard from '../components/LargeCard'
 import MediumCard from '../components/MediumCard'
@@ -44,6 +45,8 @@ export default function Home({ exploreData, cardsData }) {
 
         <LargeCard img='https://links.papareact.com/4cj' title='The Greatest Outdoors' description="Wishlist curated by Airbnb" buttonText='Get Inspired' />
       </main>
+
+      <Footer />
     </div>
   )
 }
