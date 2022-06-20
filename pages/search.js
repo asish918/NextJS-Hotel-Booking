@@ -2,6 +2,7 @@ import Footer from "../components/Footer"
 import Header from "../components/Header"
 import { useRouter } from "next/router"
 import format from "date-fns/format"
+import InfoCard from "../components/InfoCard"
 
 const Search = ({ searchResults }) => {
     const router = useRouter();
@@ -28,9 +29,20 @@ const Search = ({ searchResults }) => {
                         <p className="button">More filters</p>
                     </div>
 
-                    {/* {searchResults.map((result, index) => (
-
-                    ))} */}
+                    <div className="flex flex-col">
+                    {searchResults.map((result, index) => (
+                        <InfoCard 
+                        key={index}
+                        img={result.img}
+                        location={result.location}
+                        title={result.title}
+                        description={result.description}
+                        star={result.star}
+                        price={result.price}
+                        total={result.total}
+                         />
+                    ))}
+                    </div>
                 </section>
             </main>
 
