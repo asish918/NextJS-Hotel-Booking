@@ -12,6 +12,7 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { DateRangePicker } from 'react-date-range';
 import { useRouter } from "next/router";
+import assets from '../assets/assets'
 
 const Header = ({ placeholder }) => {
     const [searchInput, setSearchInput] = useState("")
@@ -47,7 +48,7 @@ const Header = ({ placeholder }) => {
         <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5 md:px-10">
             {/* Left */}
             <div onClick={() => router.push("/")} className="relative flex items-center h-10 my-auto cursor-pointer">
-                <Image src='https://links.papareact.com/qd3' layout="fill" objectFit="contain" objectPosition='left' />
+                <Image src={assets.logo} layout="fill" objectFit="contain" objectPosition='left' />
             </div>
 
             {/* Middle */}
