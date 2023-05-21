@@ -5,8 +5,11 @@ import { FieldValues, useForm } from "react-hook-form";
 import useRentModal from "../../hooks/useRentModal";
 import Heading from "../Heading";
 import CategoryInput from "../inputs/CategoryInput";
+import CountrySelect from "../inputs/CountrySelect";
 import { categories } from "../navbar/Categories";
 import Modal from "./Modal";
+import Map from "../Map";
+import dynamic from "next/dynamic";
 
 enum STEPS {
     CATEGORY = 0,
@@ -45,6 +48,11 @@ const RentModal = () => {
     });
 
     const category = watch("category");
+    const location = watch("location");
+
+    const Map = useMemo(() => 
+        dynamic(() => import("../Map"), { ssr: false }
+    ), [location]);
 
     const setCustomValue = (id: string, value: any) => {
         setValue(id, value, {
@@ -63,7 +71,7 @@ const RentModal = () => {
     }
 
     const actionLabel = useMemo(() => {
-        if(step === STEPS.PRICE) {
+        if (step === STEPS.PRICE) {
             return 'Create';
         }
 
@@ -71,15 +79,15 @@ const RentModal = () => {
     }, [step])
 
     const secondaryActionLabel = useMemo(() => {
-        if(step === STEPS.CATEGORY)
+        if (step === STEPS.CATEGORY)
             return undefined;
-        
-            return 'Back';
-    },[step]);
+
+        return 'Back';
+    }, [step]);
 
     let bodyContent = (
         <div className="flex flex-col gap-8">
-            <Heading 
+            <Heading
                 title="Which of these best describes your place?"
                 subtitle="Pick a category"
             />
@@ -87,7 +95,7 @@ const RentModal = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-x-auto">
                 {categories.map((item) => (
                     <div key={item.label} className="col-span-1">
-                        <CategoryInput 
+                        <CategoryInput
                             onClick={(category) => setCustomValue('category', category)}
                             selected={category === item.label}
                             label={item.label}
@@ -98,13 +106,33 @@ const RentModal = () => {
             </div>
         </div>
     )
-    
+
+    if (step === STEPS.LOCATION) {
+        bodyContent = (
+            <div className="flex flex-col gap-8">
+                <Heading
+                    title="Where is your place located?"
+                    subtitle="Help guests find you!"
+                />
+
+                <CountrySelect
+                    value={location}
+                    onChange={(value) => setCustomValue('location', value)}
+                />
+
+                <Map
+                    center={location?.latlng}
+                />
+            </div>
+        )
+    }
+
     return (
-        <Modal 
+        <Modal
             title="Airbnb your home"
             isOpen={rentModal.isOpen}
             onClose={rentModal.onClose}
-            onSubmit={rentModal.onClose}
+            onSubmit={onNext}
             actionLabel={actionLabel}
             secondaryActionLabel={secondaryActionLabel}
             secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
