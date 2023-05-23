@@ -6,13 +6,13 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useMemo } from "react";
 import useCountries from "../../hooks/useCountries";
-import { SafeListing, SafeUser } from "../../types";
+import { SafeListing, SafeReservation, SafeUser } from "../../types";
 import Button from "../Button";
 import HeartButton from "../HeartButton";
 
 interface ListingCardProps {
     data: SafeListing;
-    reservation?: Reservation
+    reservation?: SafeReservation
     onAction?: (id: string) => void;
     disabled?: boolean
     actionLabel?: string;
@@ -37,7 +37,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
     const handleCancel = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
 
-        if(disabled){
+        if (disabled) {
             return;
         }
 
@@ -45,7 +45,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
     }, [onAction, actionId, disabled])
 
     const price = useMemo(() => {
-        if(reservation) {
+        if (reservation) {
             return reservation.totalPrice;
         }
 
@@ -53,24 +53,24 @@ const ListingCard: React.FC<ListingCardProps> = ({
     }, [reservation, data.price])
 
     const reservationDate = useMemo(() => {
-        if(!reservation) {
+        if (!reservation) {
             return null;
         }
 
         const start = new Date(reservation.startDate);
         const end = new Date(reservation.endDate);
-        
+
         return `${format(start, 'PP')} - ${format(end, 'PP')}`
     }, [reservation])
 
     return (
-        <div 
+        <div
             onClick={() => router.push(`/listings/${data.id}`)}
             className="col-span-1 cursor-pointer group"
         >
             <div className="flex flex-col gap-2 w-full">
                 <div className="aspect-square w-full relative overflow-hidden rounded-xl">
-                    <Image 
+                    <Image
                         alt="listing"
                         fill
                         src={data.imageSrc}
@@ -78,7 +78,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
                     />
 
                     <div className="absolute top-3 right-3">
-                        <HeartButton 
+                        <HeartButton
                             listingId={data.id}
                             currentUser={currentUser}
                         />
@@ -102,7 +102,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
                     )}
                 </div>
                 {onAction && actionLabel && (
-                    <Button 
+                    <Button
                         disabled={disabled}
                         small
                         label={actionLabel}

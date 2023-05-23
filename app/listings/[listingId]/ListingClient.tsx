@@ -72,8 +72,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
             .then(() => {
                 toast.success('Listing reserved');
                 setDateRange(initialDateRange);
-                // redirect to /trips
-                router.refresh();
+                router.push('trips');
             })
             .catch((e) => {
                 toast.error('Something went wrong.');
@@ -84,10 +83,10 @@ const ListingClient: React.FC<ListingClientProps> = ({
     }, [totalPrice, dateRange, listing?.id, router, currentUser, loginModal])
 
     useEffect(() => {
-        if(dateRange.startDate && dateRange.endDate) {
+        if (dateRange.startDate && dateRange.endDate) {
             const dayCount = differenceInCalendarDays(dateRange.endDate, dateRange.startDate);
 
-            if(dayCount && listing.price){
+            if (dayCount && listing.price) {
                 setTotalPrice(dayCount * listing.price);
             } else {
                 setTotalPrice(listing.price);
@@ -122,7 +121,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
                             locationValue={listing.locationValue}
                         />
                         <div className="order-first mb-10 md:order-last md:col-span-3">
-                            <ListingReservation 
+                            <ListingReservation
                                 price={listing.price}
                                 totalPrice={totalPrice}
                                 onChangeDate={(value) => setDateRange(value)}
