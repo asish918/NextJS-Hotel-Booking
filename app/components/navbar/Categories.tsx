@@ -108,7 +108,6 @@ const Categories = () => {
                         key={item.label}
                         label={item.label}
                         selected={category === item.label}
-                        description={item.description}
                         icon={item.icon}
                     />
                 ))}
