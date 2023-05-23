@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 import Container from "../../components/Container";
 import { categories } from "../../components/navbar/Categories";
 import useLoginModal from "../../hooks/useLoginModal";
-import { SafeListing, SafeUser } from "../../types"
+import { SafeListing, SafeReservation, SafeUser } from "../../types"
 import ListingHead from "./ListingHead";
 import ListingInfo from "./ListingInfo";
 import ListingReservation from "./ListingReservation";
@@ -22,7 +22,7 @@ const initialDateRange = {
 };
 
 interface ListingClientProps {
-    reservations?: Reservation[]
+    reservations?: SafeReservation[]
     listing?: SafeListing & {
         user: SafeUser
     };
