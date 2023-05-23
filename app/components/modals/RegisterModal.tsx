@@ -42,7 +42,9 @@ const RegisterModal = () => {
 
         axios.post('/api/register', data)
             .then(() => {
+                toast.success("Successfully registered!")
                 registerModal.onClose();
+                loginModal.onOpen();
             })
             .catch((e) => {
                 toast.error('Something went wrong.')
@@ -99,7 +101,7 @@ const RegisterModal = () => {
                 outline
                 label="Continue with Google"
                 icon={FcGoogle}
-                onClick={() => {signIn('google')}}
+                onClick={() => { signIn('google') }}
             />
 
             <div className="text-neutral-500 text-center mt-4 font-light">
@@ -107,7 +109,7 @@ const RegisterModal = () => {
                     <div>
                         Already have an account?
                     </div>
-                    <div 
+                    <div
                         className="text-rose-500 cursor-pointer hover:underline"
                         onClick={toggle}
                     >
