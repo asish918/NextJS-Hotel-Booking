@@ -2,13 +2,14 @@
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
-import { AiOutlineMenu } from 'react-icons/ai'
+import { AiFillGithub, AiOutlineMenu } from 'react-icons/ai'
 import useLoginModal from '../../hooks/useLoginModal'
 import useRegisterModal from '../../hooks/useRegisterModal'
 import useRentModal from '../../hooks/useRentModal'
 import { SafeUser } from '../../types'
 import Avatar from '../Avatar'
 import MenuItem from './MenuItem'
+import Link from 'next/link'
 
 interface UserMenuProps {
     currentUser?: SafeUser | null
@@ -25,10 +26,10 @@ const UserMenu: React.FC<UserMenuProps> = ({
 
     const toggleOpen = useCallback(() => {
         setIsOpen((value) => !value);
-    },[])
+    }, [])
 
     const onRent = useCallback(() => {
-        if(!currentUser) {
+        if (!currentUser) {
             return loginModal.onOpen();
         }
 
@@ -47,26 +48,31 @@ const UserMenu: React.FC<UserMenuProps> = ({
                         <Avatar src={currentUser?.image} />
                     </div>
                 </div>
+                <div className='font-semibold py-3 px-3 rounded-full hover:bg-neutral-100 transition cursor-pointer'>
+                    <Link target='_blank' href="https://github.com/asish918/NextJS-Airbnb-clone">
+                        <AiFillGithub style={{ height: 30, width: 30 }} />
+                    </Link>
+                </div>
             </div>
 
             {isOpen && (
                 <div className='absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm'>
                     <div className='flex flex-col cursor-pointer'>
                         {currentUser ? (
-                        <>
-                            <MenuItem onClick={() => router.push('/trips')} label="My Trips" />
-                            <MenuItem onClick={() => router.push('/favourites')} label="My Favourites" />
-                            <MenuItem onClick={() => router.push('/reservations')} label="My Reservations" />
-                            <MenuItem onClick={() => router.push('/properties')} label="My Properties" />
-                            <MenuItem onClick={onRent} label="Airbnb my home" />
-                            <hr />
-                            <MenuItem onClick={() => signOut()} label="Logout" />
-                        </>
+                            <>
+                                <MenuItem onClick={() => router.push('/trips')} label="My Trips" />
+                                <MenuItem onClick={() => router.push('/favourites')} label="My Favourites" />
+                                <MenuItem onClick={() => router.push('/reservations')} label="My Reservations" />
+                                <MenuItem onClick={() => router.push('/properties')} label="My Properties" />
+                                <MenuItem onClick={onRent} label="Airbnb my home" />
+                                <hr />
+                                <MenuItem onClick={() => signOut()} label="Logout" />
+                            </>
                         ) : (
-                        <>
-                            <MenuItem onClick={loginModal.onOpen} label="Login" />
-                            <MenuItem onClick={registerModal.onOpen} label="Sign Up" />
-                        </>
+                            <>
+                                <MenuItem onClick={loginModal.onOpen} label="Login" />
+                                <MenuItem onClick={registerModal.onOpen} label="Sign Up" />
+                            </>
                         )}
                     </div>
                 </div>
