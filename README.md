@@ -1,97 +1,149 @@
-![AirbnbLogo](readme_assets/logo.png)
-Fully Functional <b>Airbnb Clone</b>
-<br/>
+<a name="readme-top"></a>
 
-![Banner](readme_assets/banner.jpg)
+[![Stargazers][stars-shield]][stars-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-<br/>
-
-## Tech Stack
-
+<!-- PROJECT LOGO -->
+<br />
 <div align="center">
-<img src="https://img.shields.io/badge/-react-white?style=for-the-badge&logoColor=white&color=61DAFB&logo=react" />
-<img src="https://img.shields.io/badge/-next-white?style=for-the-badge&logoColor=white&color=000000&logo=next.js" />
-<img src="https://img.shields.io/badge/-tailwind-white?style=for-the-badge&logoColor=white&color=06B6D4&logo=tailwindcss" />
-<img src="https://img.shields.io/badge/-mongodb-white?style=for-the-badge&logoColor=white&color=47A248&logo=mongodb" />
-<img src="https://img.shields.io/badge/-nextauth-white?style=for-the-badge&logoColor=white&color=3423A6&logo=webauthn" />
-<img src="https://img.shields.io/badge/-axios-white?style=for-the-badge&logoColor=white&color=5A29E4&logo=axios" />
-<img src="https://img.shields.io/badge/-typescript-white?style=for-the-badge&logoColor=white&color=3178C6&logo=typescript" />
-<img src="https://img.shields.io/badge/-leaflet_maps-white?style=for-the-badge&logoColor=white&color=199900&logo=leaflet" />
-<img src="https://img.shields.io/badge/-prisma-white?style=for-the-badge&logoColor=white&color=2D3748&logo=prisma" />
+  <a href="https://github.com/asish918/NextJS-Hotel-Booking">
+    <img src="readme_assets/logo.png" alt="Logo" width="38" height="25">
+  </a>
+
+<h3 align="center">Hotel Booking Site</h3>
+
+  <p align="center">
+    A fully functional Hotel Booking site inspired by Airbnb
+    <br />
+    <br />
+    <a href="https://nextjs-hotelbooking-clone-1d4duako2-asish918.vercel.app/" target="_blank">View Demo</a>
+  </p>
 </div>
 
-## Tools Used
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
-<div align="center">
-<img src="https://img.shields.io/badge/-npm-white?style=for-the-badge&logoColor=CB3837&color=2D3748&logo=npm" />
-<img src="https://img.shields.io/badge/-git-white?style=for-the-badge&logoColor=white&color=F05032&logo=git" />
-<img src="https://img.shields.io/badge/-github-white?style=for-the-badge&logoColor=white&color=181717&logo=github" />
-<img src="https://img.shields.io/badge/-datagrip-white?style=for-the-badge&logoColor=white&color=000000&logo=datagrip" />
-<img src="https://img.shields.io/badge/-VSCODE-white?style=for-the-badge&logoColor=white&color=007ACC&logo=visual studio code" />
-</div>
+<!-- ABOUT THE PROJECT -->
 
-<br/>
-<br/>
+## About The Project
 
-<a href="https://www.figma.com/community/file/1206705782258966386/airbnb-ui-kit" target="_blank">
-<img src="https://img.shields.io/badge/-figma-white?style=for-the-badge&logoColor=white&color=F24E1E&logo=figma" />
-</a>
+![Product Name Screen Shot][product-screenshot]
 
-The UI for this site was replicated from the above Figma file.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### Built With
+
+- ![Next][Next.js]
+- ![React][React.js]
+- ![Prisma][Prisma]
+- ![Tailwind][Tailwind]
+- ![MongoDB][MongoDB]
+- ![NextAuth][NextAuth]
+- ![Leaflet][Leaflet]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
 
 ## Getting Started
 
-First, install the dependencies:
+To get a local copy up and running follow these simple example steps.
 
-```bash
-npm install
-# or
-yarn install
-```
+### Prerequisites
 
-Then create a .env file, and fill your respective credentials:
+- npm
+  ```sh
+  npm install npm@latest -g
+  ```
 
-```bash
-DATABASE_URL="your_mongo_url"
-NEXTAUTH_SECRET="SOME_RANDOM_SECRET"
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=""
-```
+### Installation
 
-Generate your Prisma Schema and Push it to MongoDB:
+1. Get Auth API Keys for Google O-Auth, Cloud name for Cloudinary account and Mongo URI for your MongoDB database. You need to set these up manually.
+2. Clone the repo
+   ```sh
+   git clone https://github.com/asish918/NextJS-Hotel-Booking.git
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Enter your API keys in `.env`. Refer the `.env.example` file
+5. Generate Prisma types and push to MongoDB
+   ```sh
+   npx prisma generate && npx prisma push
+   ```
+6. Refer to the `schema.prisma` file and try to create some dummy data to see actual results. The image url is supposed to be the URL of the image file hosted on Cloudinary
+7. Run the project
+   ```sh
+   npm run dev
+   ```
+   <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-```bash
-npx primsa generate
-```
+<!-- USAGE EXAMPLES -->
 
-```bash
-npx primsa db push
-```
+## Database Schema
 
-Run the dev server:
+Refer to this visual schema to understand better
+![Database Schema][db-schema]
 
-```bash
-npm run dev
-#or
-yarn run dev
-```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<!-- LICENSE -->
 
-## File Structure
+## License
 
-![File](readme_assets/file_struct.png)
+Distributed under the MIT License. See `LICENSE` for more information. Basically you can do whatever the hell you want to with the code 😉
 
-## DB Schemas
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-![Schema](readme_assets/schema.png)
+<!-- CONTACT -->
 
-<hr/>
-<br/>
+## Contact
 
-Deployed on
+Asish Mahapatra - asishmahapatra918@gmail.com
 
-<img src="https://img.shields.io/badge/-vercel-white?style=for-the-badge&logoColor=white&color=000000&logo=vercel" />
+Deployed on <br /> ![Vercel][Vercel]
+
+Project Link: [https://github.com/asish918/NextJS-Hotel-Booking](https://github.com/asish918/NextJS-Hotel-Booking)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[stars-shield]: https://img.shields.io/github/stars/asish918/NextJS-Hotel-Booking.svg?style=for-the-badge
+[stars-url]: https://github.com/asish918/NextJS-Hotel-Booking/stargazers
+[license-shield]: https://img.shields.io/github/license/asish918/NextJS-Hotel-Booking.svg?style=for-the-badge
+[license-url]: https://github.com/asish918/NextJS-Hotel-Booking/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/asishmahapatra918
+[product-screenshot]: readme_assets/banner.jpg
+[db-schema]: readme_assets/schema.png
+[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[Prisma]: https://img.shields.io/badge/prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white
+[Tailwind]: https://img.shields.io/badge/Tailwind-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white
+[MongoDB]: https://img.shields.io/badge/Mongo-47A248?style=for-the-badge&logo=mongodb&logoColor=white
+[NextAuth]: https://img.shields.io/badge/NextAuth-3423A6?style=for-the-badge&logo=webauthn&logoColor=white
+[Leaflet]: https://img.shields.io/badge/Leaflet-199900?style=for-the-badge&logo=leaflet&logoColor=white
+[Vercel]: https://img.shields.io/badge/Vercel-black?style=for-the-badge&logo=vercel&logoColor=white
